@@ -23,6 +23,9 @@ Datos del ENSANUT (Encuesta Nacional de Salud y Nutrición) indican que *4.1 Mil
 
 ### Aprox. 13.6 Millones de personas sólo entre niños y adolescentes.
 
+¿En qué repercute en la pobreza?
+ Datos recabado de la Encuesta Nacional de Salud y Nutrición 2012 (ENSANUT) ubican a la población con mayor porcentaje de desnutrición en el área rural, haciendo gran énfasis en el sur. Y la FAO menciona que el 35% de los habitantes en las zonas rurales viven con 1.25 dólares al día, siendo esto un indicador de pobreza extrema.
+ 
 ## Alcances y limitaciones
 
 
