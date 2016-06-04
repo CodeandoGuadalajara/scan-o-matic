@@ -1,0 +1,35 @@
+.branding{
+	margin: 20px 0;
+}
+.section{
+	margin: 50px 0;
+}
+footer{
+	padding-bottom: 30px;
+}
+.navbar-header a.glyphicon-home{
+	padding: 15px;
+}
+#carousel-example-generic .item {
+  max-height: 425px;
+}
+
+.tab-pane {
+  padding: 30px 0;
+}
+
+form input#button {
+  margin-top: 15px;
+  margin-right: 10px;
+}
+.thumbnail {
+  min-height: 458px;
+}
+#estadisticas .col-md-4{
+	padding-top:40px;
+}
+a.btn.btn-default.btn-sm.control {
+  left: 49%;
+  top: 10px;
+  position: relative;
+}
