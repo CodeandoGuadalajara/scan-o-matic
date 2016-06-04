@@ -130,7 +130,7 @@
             function post(imagen) {
                 document.getElementById("btnComenzar").disabled = false;
                 var archivo = imagen.files[0];
-                var x = document.getElementById("img");
+                var x = imagen;
                 var txt = "";
                 if ('files' in x) {
                     if (x.files.length == 0) {
@@ -156,6 +156,7 @@
                         txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
                     }
                 }
+                txt.text = "ENTRE ";
                 $.ajax({
                     url: '%http://a7d1ecca.ngrok.io/%',
                     cache: false,
