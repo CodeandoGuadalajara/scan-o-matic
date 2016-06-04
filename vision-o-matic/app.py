@@ -51,7 +51,7 @@ def get_nutri_facts(lst):
 	 	    'Azucares': row[12],
 	      	'Proteinas': row[13],
 	     	'Hierro': row[14],
-	      	'Calcio ': row[15],
+	      	'Calcio': row[15],
 	      	'Magnesio': row[16],
 		    'VitaminA': row[17],
 	      	'VitaminB6': row[18],
@@ -68,11 +68,30 @@ def get_nutri_facts(lst):
 	db.close()
 	return res
 
-@app.route('/')
-def index():
-    return "Hello, World!"
+def is_healthy(res):
+	nutri = {}
+	nutri["Alimento"] = res['Alimento']
+	if res['Calorias'] < 80:
+		nutri['Calorias'] = 1
+	else :
+		nutri['Calorias'] = 0
+	if res['Grasas_total'] < 0.5:
+		nutri['Grasas_total'] = 1
+	else:
+		nutri['Grasas_total'] = 0
+	if ( res['VitaminB6'] + res['Potasio'] + res['VitaminF'] + res['VitaminD'] + res['VitaminE']+ res['VitaminC'] + res['VitaminA'] + res['VitaminB12'] + res['Sodio'] + res['Hierro'] + res['Magnesio'] + res['Calcio'] ) > 200:
+		nutri["Vitaminas"] = 1
+	else:
+		nutri["Vitaminas"] = 0
+	if res['Proteinas'] > 0.55:
+		nutri['Proteinas'] = 1
+	else:
+		nutri['Proteinas'] = 0
+	return nutri
 
-@app.route('/upload', methods=['GET', 'POST'])
+
+
+@app.route('/', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -86,14 +105,16 @@ def upload_file():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
+            print request
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             result = clarifai_api.tag_images(open(os.path.join('/Users/iorch/misc/scan-o-matic/vision-o-matic/uploads', filename), 'rb'))
             mylist = result['results'][0]['result']['tag']['classes']
             result = get_nutri_facts(mylist)
+            hly = is_healthy(result)
             message = {
                 'status': 200,
-                'message': result,
+                'message': hly,
             }
             resp = jsonify(message)
             resp.status_code = 200
