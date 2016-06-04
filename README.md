@@ -18,6 +18,8 @@ Datos del ENSANUT (Encuesta Nacional de Salud y Nutrición) indican que *4.1 Mil
 ### Desnutrición
 #### Infantil
  En México, *1.5 millones* de niños la padecen y es más prevalente en la región sur (19.2%) así como en las zonas con población indígena. [Dice la revista de la UNAM al primero de mayo del 2015](http://www.revista.unam.mx/vol.16/num5/art34/)
+ 
+ 302 279 (2.8%) menores de cinco años de edad presentan bajo peso, 1 467 757 (13.6%) baja talla y 171 982 (1.6%) emaciación ([ENSANUT 2012](http://ensanut.insp.mx/informes/ENSANUT2012ResultadosNacionales.pdf))
 
 ### Aprox. 13.6 Millones de personas sólo entre niños y adolescentes.
 
