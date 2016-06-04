@@ -58,17 +58,17 @@
 			</nav>
 		</div>
 
-		<div class="container" id="principal" style="background-image:url(img/comidaFondo.jpg); height:60%">
+		<div class="container" id="principal" style="background-image:url(img/comidaFondo.jpg); height:62%">
 			<!--/* Jumbo tron section */ -->
-			<div class="jumbotron" >
+			<div class="jumbotron"  id="div1" style="width:90%">
 				<h1>¿Qué vas a comer hoy?</h1>
-                <button class="btn btn-primary pull-right"  onclick="muestraTabla()">Comenzar</button>
+                <button id="btnComenzar" class="btn btn-primary pull-right"  onclick="muestraTabla()">Comenzar</button>
                 <input type="file" accept="image/*;capture=camera">
                 <table id="Tabla1" border="0" style="width:50%;" hidden>
-                    <tr><td>Calorias</td><td><img id="resCalorias" src="" border="0" width="50" height="50"></td></tr>
-                    <tr><td>Grasas</td><td><img id="resGrasas" src="" border="0" width="50" height="50"></td></tr>
-                    <tr><td>Vitaminas y Minerales</td><td><img id="resVitMin" src="" border="0" width="50" height="50"></td></tr>
-                    <tr><td>Proteinas</td><td><img id="resProteinas" src="" border="0" width="50" height="50"></td></tr>
+                    <tr><td>Calorias</td><td><img value="1" id="resCalorias" src="" border="0" width="50" height="50"></td></tr>
+                    <tr><td>Grasas</td><td><img value="0" id="resGrasas" src="" border="0" width="50" height="50"></td></tr>
+                    <tr><td>Vitaminas y Minerales</td><td><img value="0" id="resVitMin" src="" border="0" width="50" height="50"></td></tr>
+                    <tr><td>Proteinas</td><td><img value="1" id="resProteinas" src="" border="0" width="50" height="50"></td></tr>
                 </table>
 			</div>
 		</div>
@@ -95,7 +95,7 @@
 						</p>
 					</div>
 					<div class="contact-link">
-						<a class="btn btn-info" href="contacto.html" >Contacto</a>
+						<a class="btn btn-info" href="http://www.who.int/es/" >Mas Información</a>
 					</div>
 				</div>
 			</div>
@@ -109,21 +109,30 @@
 		  <script src="../Plantilla/js/bootstrap.min.js"></script>
         <script>
             function muestraTabla() {
-                document.getElementById("Tabla1").hidden = false;
-                funcion(document.getElementById("resCalorias"));
-                funcion(document.getElementById("resGrasas"));
-                funcion(document.getElementById("resVitMin"));
-                funcion(document.getElementById("resProteinas"));
+                var btn = document.getElementById("btnComenzar");
+                //document.getElementById("div1").style = "width:80%; margin:10px";
+                if(btn.textContent === "Comenzar"){
+                    document.getElementById("Tabla1").hidden = false;
+                    funcion(document.getElementById("resCalorias"), {BoolCalorias});
+                    funcion(document.getElementById("resGrasas"), {BoolGrasas});
+                    funcion(document.getElementById("resVitMin"), {BoolVitMin});
+                    funcion(document.getElementById("resProteinas"), {BoolProteinas});
+                    btn.textContent = "Reiniciar";
+                }
+                else {
+                    document.getElementById("Tabla1").hidden = true;
+                    btn.textContent = "Comenzar";
+                }
             }
-            function funcion(control) {
 
+            function funcion(control, value) {
                 //acceder a el webservice y obtener la variable entera/booleana 1 o 0
-                switch (0/*AQUI VARIABLE CON PARAMETRO DE BD true o false (1/0)*/) {
+                switch (value/*AQUI VARIABLE CON PARAMETRO DE BD true o false (1/0)*/) {
                     case 0:
-                        control.src = "img/No.png";
+                        control.src = "https://cdn1.iconfinder.com/data/icons/ui-color/512/Untitled-12-512.png";
                         break;
                     case 1:
-                        control.src = "img/Si.png";
+                        control.src = "https://cdn3.iconfinder.com/data/icons/10con/512/checkmark_tick-128.png";
                         break;
                 }
             }
