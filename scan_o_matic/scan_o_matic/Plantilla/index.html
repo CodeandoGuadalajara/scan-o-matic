@@ -61,9 +61,9 @@
 			<!--/* Jumbo tron section */ -->
 			<div class="jumbotron"  id="div1" style="width:90%">
 				<h1>¿Qué vas a comer hoy?</h1>
-                <button id="btnComenzar" class="btn btn-primary pull-right"  onclick="muestraTabla()" disabled>Comenzar</button>
-                <input id="img" type="file" name="file1" accept="image/*" />
-                <a  id="txt">Hola Mundo</a>
+                <button id="btnComenzar" class="btn btn-primary pull-right"  onclick="muestraTabla()" >Comenzar</button>
+                <input id="img" type="file" name="file1" accept="image/*" onchange="cosa" />
+                <a  id="lbl">Mundo</a>
                 <table id="Tabla1" border="0" style="width:50%;" hidden>
                     <tr><td>Calorias</td><td><img value="1" id="resCalorias" src="" border="0" width="50" height="50"></td></tr>
                     <tr><td>Grasas</td><td><img value="0" id="resGrasas" src="" border="0" width="50" height="50"></td></tr>
@@ -130,64 +130,26 @@
             document.getElementById("img").onchange = function(e) 
             { 
                 document.getElementById("btnComenzar").disabled = false;
-                /*var archivo = imagen.files[0];
+                var imagen = document.getElementById("img");
+                var archivo = imagen.files[0];
                 var x = imagen;
                 var txt = "";
-                if ('files' in x) {
-                    if (x.files.length == 0) {
-                        txt = "Select one or more files.";
-                    } else {
-                        for (var i = 0; i < x.files.length; i++) {
-                            txt += "<br><strong>" + (i + 1) + ". file</strong><br>";
-                            var file = x.files[i];
-                            if ('name' in file) {
-                                txt += "name: " + file.name + "<br>";
-                            }
-                            if ('size' in file) {
-                                txt += "size: " + file.size + " bytes <br>";
-                            }
-                        }
-                    }
-                }
-                else {
-                    if (x.value == "") {
-                        txt += "Select one or more files.";
-                    } else {
-                        txt += "The files property is not supported by your browser!";
-                        txt += "<br>The path of the selected file: " + x.value; // If the browser does not support the files property, it will return the path of the selected file instead. 
-                    }
-                }*/
-                txt.text = "ENTRE ";
-                $('#img').submit(function (e) {
+                lbl.text = x.baseURI;
+      
                     $.ajax({
-                        url: '%http://a7d1ecca.ngrok.io/%',
-                        // cache: false,
-                        type: 'POST',
-                        //contentType: 'application/octet-stream',
-                        data: new FormData(this),
+                        url: "http://a7d1ecca.ngrok.io",
+                        type: "POST",
+                        data: x.baseURI,
+                        setRequestHeader: ("secret", "supersecretkey"),
                         processData: false,
-                        setRequestHeader: ('secret', 'supersecretkey'),
-                        success: function (data) {
-                            txt.text = data.text;
-                        },
-                        error: function (data) {
-                            txt.text = data.text;
+                        contentType: false,
+                        success: function (res) {
+                            document.getElementById("txt").innerHTML = res;
                         }
                     });
-                });
             }
-            function muestraTabla(){
-                var btn = document.getElementById("btnComenzar");
-                 //document.getElementById("div1").style = "width:80%; margin:10px";
-                 //formdata.append("file1", file);
-                 //var ajax = new XMLHttpRequest();
-                 // ajax.upload.addEventListener("progress", myProgressHandler, false);
-              /*ajax.addEventListener("load", myCompleteHandler, false);
-              ajax.addEventListener("error", myErrorHandler, false);
-              ajax.addEventListener("abort", myAbortHandler, false);
-              ajax.open("POST", "file_upload_parser.php"); ajax.send(formdata);
-              */
-              
+            function muestraTabla() {
+                var btn = document.getElementById("btnComenzar");     
                 document.getElementById("txt").innerHTML = txt;            
                 if (btn.textContent === "Comenzar") {
                     document.getElementById("Tabla1").hidden = false;
