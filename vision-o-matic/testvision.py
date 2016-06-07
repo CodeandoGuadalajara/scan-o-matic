@@ -4,7 +4,6 @@ import MySQLdb
 import os
 
 clarifai_api = ClarifaiApi() # assumes environment variables are set.
-#path = '/Users/marcelarosales/Repos/scan-o-matic/vision-o-matic/fotos'
 
 thisdir = os.path.dirname(os.path.realpath(__file__))
 
